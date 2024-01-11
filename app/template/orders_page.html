@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orders page</title>
+        <style>
+            .center {
+                text-align: center;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #0a0a0a;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>order_number</th>
+                    <th>order_date</th>
+                    <th>order_status</th>
+                    <th>order_delivery</th>
+                    <th>client_id</th>
+                </tr>
+                {% for order in data %}
+                    <tr>
+                        <td>{{ order[0] }}</td>
+                        <td>{{ order[1] }}</td>
+                        <td>{{ order[2] }}</td>
+                        <td>{{ order[3] }}</td>
+                        <td>{{ order[4] }}</td>
+                        <td>{{ order[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div>
+        </div>
+        <div class="center">
+            <form id="deleteForm">
+                <label for="order_id">Order ID:</label>
+                <input type="text" id="order_id" name="order_id" required>
+                <input type="hidden" id="user_id" name="user_id" value="{{ data[0][5] }}">
+                <button type="button" id="sub" onclick="deleteOrder()">Delete order</button>
+            </form>
+        </div>
+        
+        <script>
+            function deleteOrder() {
+                var orderId = document.getElementById("order_id").value;
+                var userId = document.getElementById("user_id").value;
+                console.log(userId)
+                console.log(orderId)
+                fetch(`/orders/${userId}/${orderId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ order_id: orderId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response as needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+    </body>
+</html>

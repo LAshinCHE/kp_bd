@@ -1,0 +1,48 @@
+﻿<html>
+    <header>
+        <title>Main page</title>
+        <style>
+            .center{
+                text-align: center;
+            }
+            .botton{
+                width: 90%;
+                border: 8;
+                border-color: rgb(0, 0, 0);
+                background-color: rgb(183, 34, 183);
+                padding: 30px 28px;
+                font-size: 24px;
+                cursor: pointer;
+                text-align: center;
+            }
+        </style>
+    </header>
+    <body>
+        <div class="center">
+                
+                <button type="button" class="botton" onclick='get_orders("{{ data }}")'>Order</button>
+
+                <script>
+                    function get_orders(clientId) {
+                        window.location.href = `/orders/${clientId}`;
+                    }
+                </script>
+                <button type="button" class="botton" onclick='get_clients("{{ data }}")'>Clients</button>
+
+                <script>
+                    function get_clients(clientId) {
+                        window.location.href = `/clients/${clientId}`;
+                    }
+                </script>
+                <button type="button" class="botton" onclick='get_products("{{ data}}")'>Products</button>
+                <script>
+                    function get_products(clientId) {
+                        window.location.href = `/products/${clientId}`;
+                    }
+                </script>
+        </div>
+        <div class="center" >
+            {{  data }}
+        </div>
+    </body>
+</html>

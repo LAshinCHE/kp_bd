@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product page</title>
+        <style>
+            .center {
+                text-align: center;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #0a0a0a;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>product_name</th>
+                    <th>product_price</th>
+                    <th>product_description</th>
+                    <th>category_id</th>
+                    <th>product_manufacture</th>
+                </tr>
+                {% for product in data %}
+                    <tr>
+                        <td>{{ product[0] }}</td>
+                        <td>{{ product[1] }}</td>
+                        <td>{{ product[2] }}</td>
+                        <td>{{ product[3] }}</td>
+                        <td>{{ product[4] }}</td>
+                        <td>{{ product[5] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="center">
+            <form id="deleteForm">
+                <label for="order_id">Order ID:</label>
+                <input type="text" id="product_id" name="product_id" required>
+                <input type="hidden" id="user_id" name="user_id" value="{{ user_id }}">
+                <button type="button" id="sub" onclick="makeOrder()">Make order</button>
+            </form>
+        </div>
+        <script>
+            function makeOrder() {
+                var productId = document.getElementById("product_id").value;
+                var userId = document.getElementById("user_id").value;
+                console.log(userId)
+                console.log(productId)
+                fetch(`/orders/${userId}/${productId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ product_id: productId }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response as needed
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            }
+        </script>
+        <div>
+            <a>{{user_id}}</a>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>clients page</title>
+        <style>
+            .center {
+                text-align: center;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #0a0a0a;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>client_name</th>
+                    <th>client_surname</th>
+                    <th>client_phone</th>
+                    <th>client_addres</th>
+                </tr>
+                {% for client in data %}
+                    <tr>
+                        <td>{{ client[0] }}</td>
+                        <td>{{ client[1] }}</td>
+                        <td>{{ client[2] }}</td>
+                        <td>{{ client[3] }}</td>
+                        <td>{{ client[4] }}</td>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="center">
+            <form method="post" action="/clients/{{ data[0][0] }}">
+                <label for="username">Client name:</label>
+                <input type="text" id="username" name="username" required><br>
+            
+                <label for="surname">Client Surname:</label>
+                <input type="text" id="surname" name="surname" required><br>
+            
+                <label for="phone">Client Phone:</label>
+                <input type="text" id="phone" name="phone" required><br>
+            
+                <label for="address">Client Address:</label>
+                <input type="text" id="address" name="address" required><br>
+            
+                <button id="sub">Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

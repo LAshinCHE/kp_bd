@@ -1,0 +1,99 @@
+﻿<html>
+    <header>
+        <title>Main page</title>
+        <style>
+            .center{
+                text-align: center;
+            }
+            .botton{
+                width: 90%;
+                border: 8;
+                border-color: rgb(0, 0, 0);
+                background-color: rgb(183, 34, 183);
+                padding: 30px 28px;
+                font-size: 24px;
+                cursor: pointer;
+                text-align: center;
+            }
+        </style>
+    </header>
+    <body>
+        <div class="center">
+                <button type="button" class="botton" onclick="get_orders()">Order</button>
+
+                <script>
+                    function get_orders() {
+                        fetch('/orders')
+                        .then(response => response.text())  // Use text() for HTML response
+                        .then(html => {
+                            // Handle the HTML result from the server
+                            document.body.innerHTML = html;  // Replace the entire body with the new HTML
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
+                
+                <button type="button" class="botton" onclick="get_clients()">Clients</button>
+                <script>
+                    function get_clients() {
+                        fetch('/clients')
+                        .then(response => response.text())  // Use text() for HTML response
+                        .then(html => {
+                            // Handle the HTML result from the server
+                            document.body.innerHTML = html;  // Replace the entire body with the new HTML
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
+                <button type="button" class="botton" onclick="get_products()">Products</button>
+                <script>
+                    function get_products() {
+                        fetch('/products')
+                        .then(response => response.text())  // Use text() for HTML response
+                        .then(html => {
+                            // Handle the HTML result from the server
+                            document.body.innerHTML = html;  // Replace the entire body with the new HTML
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
+                <button type="button" class="botton" onclick="get_order_product()">Order Products</button>
+                <script>
+                    function get_order_product() {
+                        fetch('/order_products')
+                        .then(response => response.text())  // Use text() for HTML response
+                        .then(html => {
+                            // Handle the HTML result from the server
+                            document.body.innerHTML = html;  // Replace the entire body with the new HTML
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
+                <button type="button" class="botton" onclick="get_category()">Category</button>
+                <script>
+                    function get_category() {
+                        fetch('/category')
+                        .then(response => response.text())  // Use text() for HTML response
+                        .then(html => {
+                            // Handle the HTML result from the server
+                            document.body.innerHTML = html;  // Replace the entire body with the new HTML
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                </script>
+        </div>
+        <div class="center" >
+            {{  data }}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Product page</title>
+        <style>
+            .center {
+                text-align: center;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+            }
+            th, td {
+                border: 1px solid #0a0a0a;
+                text-align: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="center">
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>category_name</th>
+                </tr>
+                {% for category in data %}
+                    <tr>
+                        <td>{{ category[0] }}</td>
+                        <td>{{ category[1] }}</td>
+                {% endfor %}
+            </table>
+        </div>
+    </body>
+</html>
